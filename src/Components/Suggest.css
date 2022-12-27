@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.suggestBigContainer {
+    width: 100%;
+    padding: 10px 0 ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#Image {
+    width: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(86, 86, 86, 0.792);
+}
+#saaralTexts {
+    font-size: 14px;
+    color: rgba(86, 86, 86, 0.792);
+}
+#follow {
+    color: #00bfff;
+    font-size: 14px;
+    font-weight: 500;
+}
+.namesIn {
+    font-weight: 500;
+}
