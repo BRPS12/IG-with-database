@@ -6,13 +6,14 @@ import Profile from "./Pages/Profile";
 import Sidebars from "./Components/Sidebars";
 import Settings from "./Pages/Settings";
 import LogOut from "./Pages/LogOut";
+import Create from "./Pages/Create"
 const App = () => {
   
   return (
     <BrowserRouter style={{ margin: 0 }}>
       <Sidebars />
       <Routes>
-        <Route /> 
+        <Route path="/Create" element={<Create />} />
         <Route path="/LogOut" element={<LogOut />} />
         <Route path="/Settings" element={<Settings />} />
         <Route path="/:id" element={<Profile />} />

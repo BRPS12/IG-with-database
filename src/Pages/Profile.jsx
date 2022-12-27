@@ -27,6 +27,7 @@ const Profile = () => {
         <div className="profileContainer">
           <div className="mainContainer">
             <header>
+           
               <div className="partOne">
                 <img
                   className="zuragProfile"

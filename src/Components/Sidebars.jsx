@@ -167,6 +167,11 @@ const Sidebars = () => {
                           </div>
                         </div>
                         <div className="menuSideIcons displayNone">
+                          <Link to="/Create"
+                          href="#"
+                          style={{ color: "black", display: "flex" }}
+                          className="text-decoration-none haveLinks">
+                          
                           <img
                             src="https://cdn-icons-png.flaticon.com/128/3388/3388934.png"
                             alt=""
@@ -175,6 +180,7 @@ const Sidebars = () => {
                           <div className="srchIconText">
                             {!expanded && "Create"}
                           </div>
+                          </Link>
                         </div>
                         <div className="menuSideIcons">
                           <Link
@@ -312,9 +318,14 @@ const Sidebars = () => {
                         </div>
                       </div>
 
-                      <Link
-                      >
+
+
+                      
                       <div className="menuSideIcons displayNone">
+                      <Link
+                      to="/Create" 
+                      href="#" 
+                      className="text-decoration-none haveLinks">
                         <img
                           src="https://cdn-icons-png.flaticon.com/128/3388/3388934.png"
                           alt=""
@@ -323,8 +334,9 @@ const Sidebars = () => {
                         <div className="srchIconText">
                           {!expanded && "Create"}
                         </div>
+                        </Link>
                       </div>
-                      </Link>
+                      
 
 
 

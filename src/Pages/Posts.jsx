@@ -8,7 +8,7 @@ const Posts = ({ user }) => {
       <div className="postContainer">
         <div className="userProfileInPosts">
           <img src={user.image} alt="" className="posterProfile" />
-          <span className="posterName">{user.name}</span>
+          <span className="posterName">   Bold-Erdene</span>
         </div>
         <img
           src={user.bgimage}
@@ -40,14 +40,14 @@ const Posts = ({ user }) => {
           />
         </div>
         <span className="postReactions">
-          <strong>{user.likes}</strong> likes
+          <strong>{user.title}</strong> likes
         </span>
         <div className="postComment">
           <span className="posterName">{user.firstname}</span>
           <span>{user.domain}</span>
         </div>
         <div className="timeAgo">
-          <span>{user.age}</span>
+          <span>{user._id}</span>
           <span>MINUTES AGO</span>
         </div>
         <hr />
