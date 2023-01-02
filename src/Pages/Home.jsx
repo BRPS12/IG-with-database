@@ -22,14 +22,12 @@ const Home = () => {
   const getData = async () => {
     setIsLoading(true);
     const response = await instance.get("/users");
-    console.log(response.data.data);
     setData(response.data.data);
     setIsLoading(false);
   };
   const getDataPost = async () => {
     setIsLoading(true);
     const response = await instance.get("/posts");
-    console.log(response.data.users);
     setDataPost(response.data.Post);
     setIsLoading(false);
   };

@@ -1,15 +1,27 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Post.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useRef } from "react";
+import axios from "axios";
+import { useEffect } from "react";
 
 const Posts = ({ user }) => {
+  const params = useParams()
+  // const id = params._id;
+  const idRef = useRef();
+  const postDelete = async(id) => {
+    const res = await axios.delete(`http://localhost:8000/posts/${id}`)
+    console.log(res)
+  }
+
   return (
-    <Link href="#" className="LinkContainer" to={`/${user.id}`}>
+    // <Link href="#" className="LinkContainer" to={`/${user.id}`}>
       <div className="postContainer">
         <div className="userProfileInPosts">
           <img src={user.image} alt="" className="posterProfile" />
           <span className="posterName">   Bold-Erdene</span>
         </div>
+
         <img
           src={user.bgimage}
           alt=""
@@ -40,16 +52,19 @@ const Posts = ({ user }) => {
           />
         </div>
         <span className="postReactions">
-          <strong>{user.title}</strong> likes
+          <strong>{user.likes}</strong> likes
+          
         </span>
+        <p style={{marginLeft:10}}><strong>Bold-Erdene</strong>  {user.desc}</p>
         <div className="postComment">
           <span className="posterName">{user.firstname}</span>
           <span>{user.domain}</span>
         </div>
         <div className="timeAgo">
           <span>{user._id}</span>
-          <span>MINUTES AGO</span>
+
         </div>
+        <button style={{width:50 , height:20 , marginLeft:10}}onClick={() => postDelete(user._id)}></button>
         <hr />
         <div className="comments">
           <div className="commentLeft">
@@ -67,7 +82,7 @@ const Posts = ({ user }) => {
           <span id="postColor">Post</span>
         </div>
       </div>
-    </Link>
+    // </Link>
   );
 };
 

@@ -5,9 +5,11 @@ import { useParams } from "react-router-dom";
 const Create = () => {
     const params = useParams();
     const id = params._id
-    const [ value , setValue] = useState()
+    const [ desc , setDesc] = useState()
+    const[ bgimage , setBgimage] = useState()
+    const [ likes , setLikes] = useState()
     const idRef = useRef()
-    console.log(value)
+
     const instance = axios.create({
         baseURL: "http://localhost:8000/",
         headers: {
@@ -15,28 +17,32 @@ const Create = () => {
         },
       });
       
-    const postFirstName = async () => {
+    const postDesc = async () => {
         const res = await instance.post("/posts" , {
-            title : value
+            desc : desc,
+            bgimage: bgimage,
+            likes : likes
         });
         console.log(res)
         
     } 
-    const postDelete = async ()=> {
-        const res = await instance.delete(`/posts/${idRef.current}`)
-        console.log(res)
-    } 
+
 return (
-      <div>
-       <center> 
-        <input 
-       onChange={(e) => setValue(e.target.value)}
-       /> <button 
-       onClick={postFirstName}
+      <div style={{display:"flex" , flexDirection:"column" , alignItems:"center"}}>
+        <input style={{width:200 , height : 25}}
+       onChange={(e) => setDesc(e.target.value)}
+       />Description
+       <input style={{width:200 , height : 25}}
+       onChange={(e) => setBgimage(e.target.value)}
+       />Background Image
+       <input style={{width:200 , height : 25}}
+       type="number"
+       onChange={(e) => setLikes(e.target.value)}
+       />Likes
+       
+        <button 
+       onClick={postDesc}
        >Post</button>
-       <input onChange={(e) => idRef.current = e.target.value}/>
-       <button onClick={postDelete}>Delete</button>
-       </center>
     </div>
 )
 }
