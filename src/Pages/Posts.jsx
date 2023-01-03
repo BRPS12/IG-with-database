@@ -1,17 +1,17 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Post.css";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useRef } from "react";
 import axios from "axios";
 import { useEffect } from "react";
-
-const Posts = ({ user }) => {
+import { Button } from "bootstrap";
+const Posts = ({ user, setDataPost }) => {
   const params = useParams()
   // const id = params._id;
   const idRef = useRef();
   const postDelete = async(id) => {
     const res = await axios.delete(`http://localhost:8000/posts/${id}`)
-    console.log(res)
+    setDataPost((prev) => prev.filter((el) => el._id !== id) )
   }
 
   return (
@@ -19,7 +19,7 @@ const Posts = ({ user }) => {
       <div className="postContainer">
         <div className="userProfileInPosts">
           <img src={user.image} alt="" className="posterProfile" />
-          <span className="posterName">   Bold-Erdene</span>
+          <span className="posterName">{user.name}</span>
         </div>
 
         <img
@@ -55,7 +55,7 @@ const Posts = ({ user }) => {
           <strong>{user.likes}</strong> likes
           
         </span>
-        <p style={{marginLeft:10}}><strong>Bold-Erdene</strong>  {user.desc}</p>
+        <p style={{marginLeft:10}}><strong>{user.name}</strong>  {user.desc}</p>
         <div className="postComment">
           <span className="posterName">{user.firstname}</span>
           <span>{user.domain}</span>
@@ -64,7 +64,7 @@ const Posts = ({ user }) => {
           <span>{user._id}</span>
 
         </div>
-        <button style={{width:50 , height:20 , marginLeft:10}}onClick={() => postDelete(user._id)}></button>
+        <button type="button" class="btn btn-light" style={{width:50 , height:35 , marginLeft:10}} onClick={() => postDelete(user._id)}>🗑</button>
         <hr />
         <div className="comments">
           <div className="commentLeft">

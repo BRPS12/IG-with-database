@@ -17,8 +17,10 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    getDataById(params._id);
-  }, [params._id]);
+    
+    getDataById(params.id);
+
+  }, [params.id]);
   return (
     <>
       {isLoading ? (

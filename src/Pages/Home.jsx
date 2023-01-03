@@ -26,10 +26,17 @@ const Home = () => {
     setIsLoading(false);
   };
   const getDataPost = async () => {
-    setIsLoading(true);
-    const response = await instance.get("/posts");
-    setDataPost(response.data.Post);
-    setIsLoading(false);
+    try {
+      setIsLoading(true);
+      const response = await instance.get("/posts");
+      setDataPost(response.data.Post);
+      setIsLoading(false);
+
+    } catch (error) {
+
+    }
+   
+  
   };
 
   useEffect(() => {
@@ -56,7 +63,7 @@ const Home = () => {
                 dataPost.map((user, index) => {
                   return (
                     <div className="jojo">
-                      <Posts key={index} user={user} />
+                      <Posts setDataPost={setDataPost} key={index} user={user} />
                     </div>
                   );
                 })}
