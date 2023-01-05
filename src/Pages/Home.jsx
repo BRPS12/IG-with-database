@@ -19,29 +19,15 @@ const Home = () => {
       "Content-type": "application/json; charset=UTF-8",
     },
   });
-  const getData = async () => {
-    setIsLoading(true);
-    const response = await instance.get("/users");
-    setData(response.data.data);
+
+  const customFunction = async (path, setData) => {
+    const response = await instance.get(path);
+    setData(response.data.Post)
     setIsLoading(false);
-  };
-  const getDataPost = async () => {
-    try {
-      setIsLoading(true);
-      const response = await instance.get("/posts");
-      setDataPost(response.data.Post);
-      setIsLoading(false);
-
-    } catch (error) {
-
-    }
-   
-  
-  };
-
+  }
   useEffect(() => {
-    getData();
-    getDataPost();
+    customFunction('/users', setData)
+    customFunction('/posts', setDataPost)
   }, []);
 
   return (
@@ -52,18 +38,22 @@ const Home = () => {
         <div className="bigContainer">
           <div className="main">
             <div className="Users">
-              {data &&
+            {data &&
                 data.map((user, index) => {
+                  return <Users key={user._id} user={user} />;
+                })}
+              {dataPost &&
+                dataPost.map((user, index) => {
                   return <Users key={user._id} user={user} />;
                 })}
             </div>
             <div className="bigPostContainer">
               {/* try new thing */}
               {dataPost &&
-                dataPost.map((user, index) => {
+                dataPost.map((post, index) => {
                   return (
                     <div className="jojo">
-                      <Posts setDataPost={setDataPost} key={index} user={user} />
+                      <Posts setDataPost={setDataPost} key={index} post={post} />
                     </div>
                   );
                 })}

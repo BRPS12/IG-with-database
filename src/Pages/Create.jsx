@@ -10,10 +10,12 @@ const Create = () => {
 
     const params = useParams();
     const id = params._id
+    const [newid , setNewid] = useState()
     const [ desc , setDesc] = useState()
     const[ bgimage , setBgimage] = useState()
     const [ likes , setLikes] = useState()
     const [name , setName] = useState();
+    const [lastname , setLastname] = useState();
     const [image , setImage] = useState()
     const [mes ,setMes] = useState()
     const instance = axios.create({
@@ -25,14 +27,15 @@ const Create = () => {
       
     const postDesc = async () => {
       try {
-        const res = await instance.post("/posts" , {
+        const res = await instance.post("/posts", {
           desc : desc,
           bgimage: bgimage,
           likes : likes,
-          name : name,
+          firstname : name,
           image: image,
-         
+          lastname:lastname
       })
+      toast("Posted")
       setMes()
       } catch (error) {
 
@@ -40,9 +43,10 @@ const Create = () => {
   
       }
     } 
-    useEffect(() => {
-      postDesc()
-    },[])
+
+
+   
+
 
 return (
       <div style={{display:"flex" , flexDirection:"column" , alignItems:"center" , background:"#fafafa"}}>
@@ -67,15 +71,21 @@ return (
 
          <input style={{width:300 , height : 30 , marginTop:10}}
          class="form-control"
-         placeholder="Name"
+         placeholder="Firstname"
        onChange={(e) => setName(e.target.value)}
        />
-
+        <input style={{width:300 , height : 30 , marginTop:10}}
+         class="form-control"
+         placeholder="Lastname"
+       onChange={(e) => setLastname(e.target.value)}
+       />
          <input style={{width:300 , height : 30 , marginTop:10}}
          class="form-control"
          placeholder="Profile Picture"
        onChange={(e) => setImage(e.target.value)}
        />
+       
+
        
         <button 
         style={{marginTop:10}}
@@ -84,6 +94,9 @@ return (
        >Post</button>
        <ToastContainer />
        {mes}
+
+
+
     </div>
 )
 }

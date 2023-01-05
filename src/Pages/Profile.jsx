@@ -7,28 +7,44 @@ import Loading from "../Components/Loading";
 
 const Profile = () => {
   const params = useParams();
-  const [data, setData] = useState();
+  const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const getDataById = async () => {
+  const getPostById = async () => {
     setIsLoading(true);
-    const response = await axios.get(`http://localhost:8000/users/${params.id}`);
+    const response = await axios.get(`http://localhost:8000/posts/${params.id}`);
     setData(response.data.data);
     setIsLoading(false);
   };
 
+  
+//    const getDataById = async (id) => {
+//   await axios.get(`http://localhost:8000/users/${id}`).then(res => {
+//     setData(res.data.data)
+//     setIsLoading(false);
+//   }).catch(err => {
+//     console.log(err)
+//   })
+//  }
+
+
   useEffect(() => {
     
-    getDataById(params.id);
+    getPostById(params.id);   
 
   }, [params.id]);
+
+
   return (
     <>
       {isLoading ? (
         <Loading />
       ) : (
-        <div className="profileContainer">
+        
+ <div className="profileContainer">
+  
           <div className="mainContainer">
             <header>
+    
            
               <div className="partOne">
                 <img
@@ -39,7 +55,7 @@ const Profile = () => {
               </div>
               <div className="partTwo">
                 <div className="aaaa">
-                  <span>{data.maidenName}</span>
+                  <span>{data.firstname} {data.lastname}</span>
                   <button>Following</button>
                   <button>Message</button>
                   <button>
@@ -52,13 +68,13 @@ const Profile = () => {
                 </div>
                 <div className="aaab">
                   <span>
-                    <strong>{data.age}</strong> posts
+                    <strong>1</strong> posts
                   </span>
                   <span>
-                    <strong>{data.height}K</strong> followers
+                    <strong>{data.likes}K</strong> followers
                   </span>
                   <span>
-                    <strong>{data.weight}K</strong> following
+                    <strong>{data.likes}K</strong> following
                   </span>
                 </div>
                 <div>
@@ -69,7 +85,7 @@ const Profile = () => {
             </header>
             <hr />
             <div className="posts">
-              <img className="postsImages" src={data.image} alt={data.image} />
+              <img className="postsImages" src={data.bgimage} alt={data.image} />
             </div>
             <footer>
               <span id="damnTextsTwo">
@@ -80,6 +96,7 @@ const Profile = () => {
             </footer>
           </div>
         </div>
+        
       )}
     </>
   );

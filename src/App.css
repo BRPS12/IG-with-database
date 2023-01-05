@@ -133,6 +133,7 @@
 }
 .userProfile {
   width: 60px;
+  height: 56px;
   background: linear-gradient(white, white) padding-box,
     linear-gradient(to bottom left, #6600ff, #ff9900) border-box;
   border-radius: 50%;

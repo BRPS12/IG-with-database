@@ -77,6 +77,8 @@ header {
   gap: 20px;
 }
 .postsImages {
+  height: 300px;
+
   border: 1px solid #d1cfd5;
 }
 footer {

@@ -1,17 +1,17 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Card, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-const UsersTwo = ({ user }) => {
+const UsersTwo = ({ post }) => {
   return (
     <div id="hoverIt">
       <Link
         href="#"
         style={{ color: "white" }}
         className="text-decoration-none paddingUm"
-        to={`/${user._id}`}
+        to={`/${post._id}`}
       >
         <div className="userTwoContainer">
-          <img className="userProfileTwo" src={user.image} alt="" />
+          <img className="userProfileTwo" src={post.image} alt="" />
+
           <div className="texts">
             <span
               style={{
@@ -19,12 +19,15 @@ const UsersTwo = ({ user }) => {
                 color: "black ",
               }}
             >
-              {user.firstname}
+              {post.firstname}
+
             </span>
-            <span className="grayTexts">{user.lastname}</span>
+            <span className="grayTexts">{post.lastname} </span>
           </div>
         </div>
       </Link>
+
+      
     </div>
   );
 };

@@ -6,11 +6,13 @@ import { Link } from "react-router-dom";
 import UsersTwo from "../Components/UsersTwo"
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FaBars } from "react-icons/fa";
+import UsersThree from "../Components/UsersThree"
 
 const Sidebars = () => {
   const [expanded, setExpanded] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState([]);
+  const [dataPost, setDataPost] = useState([]);
+  const [data , setData] = useState([]);
   const [value, setValue] = useState("");
   const [expandedTwo, setExpandedTwo] = useState(false);
 
@@ -22,14 +24,23 @@ const Sidebars = () => {
   });
   const getData = async () => {
     setIsLoading(true);
-    const response = await instance.get(`/users`);
-    console.log(response.data.users);
+    const response = await instance.get(`/posts`);
+    setDataPost(response.data.Post);
+    setIsLoading(false);
+    setExpanded(false);
+  };
+
+  const getUser = async () => {
+    setIsLoading(true);
+    const response = await instance.get(`/users`); 
     setData(response.data.data);
     setIsLoading(false);
     setExpanded(false);
   };
+
   useEffect(() => {
     getData();
+    getUser()
     setExpanded(false);
     setExpandedTwo(false);
   }, []);
@@ -405,7 +416,15 @@ const Sidebars = () => {
                     data.map((user, index) => {
                       return (
                         user.firstname.includes(value) && (
-                          <UsersTwo key={index} user={user} />
+                          <UsersThree  key={index} user={user} />
+                        )
+                      );
+                    })}
+                  {dataPost &&
+                    dataPost.map((post, index) => {
+                      return (
+                        post.firstname.includes(value) && (
+                          <UsersTwo  key={index} post={post} />
                         )
                       );
                     })}
