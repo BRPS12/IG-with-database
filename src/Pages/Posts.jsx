@@ -34,8 +34,9 @@ const Posts = ({ post, setDataPost }) => {
         <div className="userProfileInPosts">
           <img src={post.image} alt="" className="posterProfile" />
           <span className="posterName">{post.firstname} {post.lastname}</span>
+          
         </div>
-
+        <strong style={{marginLeft:10 , marginBottom: 10}}>{post.day}</strong>
         <img
           src={post.bgimage}
           alt=""

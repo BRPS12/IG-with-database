@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FaBars } from "react-icons/fa";
 import UsersThree from "../Components/UsersThree"
 
+
 const Sidebars = () => {
   const [expanded, setExpanded] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -412,20 +413,13 @@ const Sidebars = () => {
                   <div id="aaac">
                     <strong className="recentSpan">Recent</strong>
                   </div>
-                  {data &&
-                    data.map((user, index) => {
-                      return (
-                        user.firstname.includes(value) && (
-                          <UsersThree  key={index} user={user} />
-                        )
-                      );
-                    })}
+                  
                   {dataPost &&
                     dataPost.map((post, index) => {
                       return (
-                        post.firstname.includes(value) && (
+    
                           <UsersTwo  key={index} post={post} />
-                        )
+                        
                       );
                     })}
                 </div>

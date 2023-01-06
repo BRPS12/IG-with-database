@@ -10,8 +10,8 @@ const Create = () => {
 
     const params = useParams();
     const id = params._id
-    const [newid , setNewid] = useState()
     const [ desc , setDesc] = useState()
+    const [day , setDay] = useState();
     const[ bgimage , setBgimage] = useState()
     const [ likes , setLikes] = useState()
     const [name , setName] = useState();
@@ -33,7 +33,9 @@ const Create = () => {
           likes : likes,
           firstname : name,
           image: image,
-          lastname:lastname
+          lastname:lastname,
+          day : day,
+
       })
       toast("Posted")
       setMes()
@@ -85,6 +87,13 @@ return (
        onChange={(e) => setImage(e.target.value)}
        />
        
+       <input style={{width:300 , height : 30 , marginTop:10}}
+         class="form-control"
+         placeholder="Day"
+         type="date"
+       onChange={(e) => setDay(e.target.value)}
+       />
+
 
        
         <button 
